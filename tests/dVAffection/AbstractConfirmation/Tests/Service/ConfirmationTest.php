@@ -24,7 +24,7 @@ class ConfirmationTest extends \PHPUnit_Framework_TestCase
         $actualModel = $this->service->find($id);
         $this->assertInstanceOf('dVAffection\AbstractConfirmation\Model\Confirmation\ConfirmationInterface', $actualModel);
 
-        $this->service->delete($id);
+        $this->service->delete($actualModel);
         $actualModel = $this->service->find($id);
         $this->assertSame(false, $actualModel);
     }

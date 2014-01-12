@@ -11,7 +11,7 @@ interface ConfirmationInterface
      * Create confirmation and return it
      *
      * @param mixed $callback
-     * @param array    $params
+     * @param array $params
      * @return Model
      */
     public function create($callback, array $params = array());
@@ -25,10 +25,10 @@ interface ConfirmationInterface
     public function find($id);
 
     /**
-     * Remove confirmation by ID
+     * Remove confirmation by its ID or by Model object
      *
-     * @param mixed $id
+     * @param mixed $idOrModel
      */
-    public function delete($id);
+    public function delete($idOrModel);
 
 } 

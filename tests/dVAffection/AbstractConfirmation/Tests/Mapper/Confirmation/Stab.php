@@ -11,12 +11,7 @@ class Stab implements ConfirmationInterface
     private $storage = array();
 
     /**
-     * Create confirmation and return it
-     *
-     * @param mixed $callback
-     * @param array $params
-     * @return Model
-     * @throws \RuntimeException
+     * {@inheritDoc}
      */
     public function create($callback, array $params = array())
     {
@@ -38,20 +33,21 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * Remove confirmation by ID
-     *
-     * @param mixed $id
+     * {@inheritDoc}
      */
-    public function delete($id)
+    public function delete($idOrModel)
     {
+        if ($idOrModel instanceof Model) {
+            $id = $idOrModel->getId();
+        } else {
+            $id = $idOrModel;
+        }
+
         unset($this->storage[$id]);
     }
 
     /**
-     * Find confirmation by ID
-     *
-     * @param mixed $id
-     * @return Model|false
+     * {@inheritDoc}
      */
     public function find($id)
     {

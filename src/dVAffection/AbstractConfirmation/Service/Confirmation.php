@@ -37,13 +37,13 @@ class Confirmation
     }
 
     /**
-     * Remove confirmation by ID
+     * Remove confirmation by its ID or by Model object
      *
-     * @param mixed $id
+     * @param mixed $idOrModel
      */
-    public function delete($id)
+    public function delete($idOrModel)
     {
-        $this->getMapper()->delete($id);
+        $this->getMapper()->delete($idOrModel);
     }
 
     function __construct(Mapper $mapper)
