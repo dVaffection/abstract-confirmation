@@ -1,20 +1,18 @@
 <?php
 
-namespace dVAffection\AbstractConfirmation\Tests\Model\Confirmation;
+namespace dVAffection\AbstractConfirmation\Model\Confirmation;
 
-use dVAffection\AbstractConfirmation\Model\Confirmation\ConfirmationInterface;
-
-class Stab implements ConfirmationInterface
+abstract class AbstractConfirmation implements ConfirmationInterface
 {
 
-    private $id;
-    private $callback;
-    private $params;
-    private $createdAt;
+    protected $id;
+    protected $callback;
+    protected $params;
+    protected $createdAt;
 
 
     /**
-     * @return mixed
+     * {@inheritDoc}
      */
     public function getCallback()
     {
@@ -22,7 +20,7 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritDoc}
      */
     public function getCreatedAt()
     {
@@ -30,7 +28,7 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritDoc}
      */
     public function getId()
     {
@@ -38,7 +36,7 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * @return array
+     * {@inheritDoc}
      */
     public function getParams()
     {
@@ -46,7 +44,7 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * @param mixed $callback
+     * {@inheritDoc}
      */
     public function setCallback($callback)
     {
@@ -54,7 +52,7 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * @param \DateTime $createdAt
+     * {@inheritDoc}
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
@@ -62,7 +60,7 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * @param mixed $id
+     * {@inheritDoc}
      */
     public function setId($id)
     {
@@ -70,7 +68,7 @@ class Stab implements ConfirmationInterface
     }
 
     /**
-     * @param array $params
+     * {@inheritDoc}
      */
     public function setParams(array $params = array())
     {

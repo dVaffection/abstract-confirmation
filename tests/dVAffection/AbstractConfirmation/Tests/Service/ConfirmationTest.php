@@ -3,7 +3,6 @@
 namespace dVAffection\AbstractConfirmation\Tests\Service;
 
 use dVAffection\AbstractConfirmation\Service\Confirmation as Service;
-use dVAffection\AbstractConfirmation\Tests\Mapper\Confirmation\Stab as Mapper;
 
 class ConfirmationTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,18 +14,42 @@ class ConfirmationTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->service = new Service(new Mapper);
+        $mock = $this->getMapperMock();
+
+        $this->service = new Service($mock);
     }
 
     public function test()
     {
-        $id          = $this->service->create('does not matter');
-        $actualModel = $this->service->find($id);
-        $this->assertInstanceOf('dVAffection\AbstractConfirmation\Model\Confirmation\ConfirmationInterface', $actualModel);
+        $callback = 'function';
+        $params   = array('param' => 'test');
 
-        $this->service->delete($actualModel);
-        $actualModel = $this->service->find($id);
-        $this->assertSame(false, $actualModel);
+        $id = $this->service->create($callback, $params);
+
+        $this->service->find($id);
+
+        $this->service->delete($id);
+    }
+
+    private function getMapperMock()
+    {
+        $originalClassName = 'dVAffection\AbstractConfirmation\Mapper\Confirmation\ConfirmationInterface';
+
+        $mock = $this->getMock($originalClassName);
+        $mock->expects($this->once())
+            ->method('create')
+            ->with($this->equalTo('function'), $this->equalTo(array('param' => 'test')))
+            ->will($this->returnValue('id-123'));
+
+        $mock->expects($this->once())
+            ->method('find')
+            ->with($this->equalTo('id-123'));
+
+        $mock->expects($this->once())
+            ->method('delete')
+            ->with($this->equalTo('id-123'));
+
+        return $mock;
     }
 
 }
